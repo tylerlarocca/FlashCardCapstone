@@ -1,0 +1,25 @@
+.List{
+    border:1px solid #808080;
+    padding:20px;
+    width:100%;
+    margin-top:20px;
+}
+ul{
+    list-style-type:none;
+    padding:0px;
+}
+#DeckName{
+    font-size:24px;
+}
+#CardNum{
+    float:right;
+}
+.Create{
+    margin-bottom:5px;
+}
+.Study{
+    margin-left:5px;
+}
+.Delete{
+    float:right;
+}
