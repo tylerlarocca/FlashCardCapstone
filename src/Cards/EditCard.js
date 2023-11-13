@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { readDeck, readCard, updateCard } from "../utils/api/index";
-
+import CardForm from "./CardForm";
 
 function EditCard() {
   // Use useState to manage the card's state
@@ -68,40 +68,16 @@ function EditCard() {
         </ol>
       </nav>
 
-      {/* Edit Card Form */}
       <h2>Edit Card {cardId}</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="front" className="form-label">
-            Front
-          </label>
-          <textarea
-            id="front"
-            className="form-control"
-            name="front"
-            value={card.front}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="back" className="form-label">
-            Back
-          </label>
-          <textarea
-            id="back"
-            className="form-control"
-            name="back"
-            value={card.back}
-            onChange={handleInputChange}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Save
-        </button>
-        <Link to={`/decks/${deckId}`} className="btn btn-secondary">
-          Cancel
-        </Link>
-      </form>
+
+      {/* Using CardForm component */}
+      <CardForm
+        card={card}
+        handleChange={handleInputChange}
+        handleSubmit={handleSubmit}
+        buttonGrayText="Cancel"
+        buttonBlueText="Save"
+      />
     </div>
   );
 }

@@ -1,28 +1,34 @@
 {
   "decks": [
     {
-      "name": "Tyler Deck",
-      "description": "My new deck",
-      "id": 1
-    },
-    {
       "name": "Test Deck",
       "description": "Testing Deck Stuff",
       "id": 2
+    },
+    {
+      "name": "Help",
+      "description": "911",
+      "id": 3
     }
   ],
   "cards": [
-    {
-      "front": "Can you code well?",
-      "back": "No",
-      "deckId": 1,
-      "id": 1
-    },
     {
       "front": "Hehe",
       "back": "xD",
       "deckId": 2,
       "id": 2
+    },
+    {
+      "front": "Tyler is the Kobe Bryant",
+      "back": "of Javascript",
+      "deckId": 3,
+      "id": 3
+    },
+    {
+      "front": "Wow",
+      "back": "truly Goated",
+      "deckId": 3,
+      "id": 4
     }
   ]
 }

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { readDeck, deleteDeck } from './utils/api/index'; // Import the API functions
+import { readDeck, deleteDeck, deleteCard } from './utils/api/index'; // Import the API functions
 
 function Deck() {
+  const { cardId } = useParams();
   const { deckId } = useParams();
   const history = useHistory();
   const [deck, setDeck] = useState(null);
@@ -20,6 +21,20 @@ function Deck() {
     if (window.confirm("Are you sure you want to delete this deck?")) {
       await deleteDeck(deckId);
       history.push('/');
+    }
+  };
+
+  const handleDeleteCard = async (cardId) => {
+    if (window.confirm("Are you sure you want to delete this card?")) {
+      try {
+        // Assuming you have a way to cancel the request if needed, e.g., AbortController
+        const signal = new AbortController().signal; 
+        await deleteCard(cardId, signal);
+        const updatedDeck = await readDeck(deckId); // Re-fetch the deck
+        setDeck(updatedDeck);
+      } catch (error) {
+        console.error("Error deleting card", error);
+      }
     }
   };
 
@@ -55,7 +70,7 @@ function Deck() {
             </div>
             <div className="btn-group">
               <Link to={`/decks/${deckId}/cards/${card.id}/edit`} className="btn btn-secondary">Edit</Link>
-              <button className="btn btn-danger">Delete</button>
+              <button className="btn btn-danger" onClick={() => handleDeleteCard(card.id)}>Delete</button>
             </div>
           </li>
         ))}
